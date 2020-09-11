@@ -30,17 +30,19 @@ export class App extends Component {
      return tables.tableNumber
   }
 
-  itemNum = (tables) => {
-    return tables.map(table => {
-      return table.items.quantity
+  itemNum = (table) => {
+    let itemCount = 0
+    table.items.map(items => {
+      return itemCount += items.quantity  
     })
+    return itemCount
   }
   
   renderTable = (tables) => {
     return tables.map(table => {
     return (
       <>
-        <div>Table {this.tableNum(table)} - 8 items</div>
+        <div>Table {this.tableNum(table)} - {this.itemNum(table)} items</div>
       </>
     );
   })
