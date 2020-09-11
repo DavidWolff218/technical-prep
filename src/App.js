@@ -26,6 +26,12 @@ export class App extends Component {
     },
   ];
 
+  tableNum = (tables) => {
+    return tables.map(table => {
+     return table.tableNumber
+    })
+  }
+  
   Orders = () => {
     return (
       <>
@@ -36,7 +42,9 @@ export class App extends Component {
   };
 
   render() {
-    return <div>{this.Orders()}</div>;
+    return <div>
+      {this.tableNum(this.sampleOrders)}
+      {this.Orders()}</div>;
   }
 }
 export default App;
