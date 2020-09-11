@@ -27,24 +27,30 @@ export class App extends Component {
   ];
 
   tableNum = (tables) => {
+     return tables.tableNumber
+  }
+
+  itemNum = (tables) => {
     return tables.map(table => {
-     return table.tableNumber
+      return table.items.quantity
     })
   }
   
-  Orders = () => {
+  renderTable = (tables) => {
+    return tables.map(table => {
     return (
       <>
-        <div>Table 1 - 8 items</div>
-        <div>Table 2 - 1 item</div>
+        <div>Table {this.tableNum(table)} - 8 items</div>
       </>
     );
-  };
+  })
+}
 
   render() {
     return <div>
-      {this.tableNum(this.sampleOrders)}
-      {this.Orders()}</div>;
+      {/* {this.tableNum(this.sampleOrders)}
+      {this.itemNum(this.sampleOrders)} */}
+      {this.renderTable(this.sampleOrders)}</div>;
   }
 }
 export default App;
