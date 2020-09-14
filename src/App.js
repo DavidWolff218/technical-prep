@@ -37,12 +37,20 @@ export class App extends Component {
     })
     return itemCount
   }
+
+  handleClick = () => {
+    console.log("hello")
+  }
   
+  renderItems = () => {
+    
+  }
+
   renderTable = (tables) => {
     return tables.map(table => {
     return (
       <>
-        <div>Table {this.tableNum(table)} - {this.itemNum(table)} items</div>
+        <div onClick={this.handleClick}>Table {this.tableNum(table)} - {this.itemNum(table)} items</div>
       </>
     );
   })
@@ -50,8 +58,6 @@ export class App extends Component {
 
   render() {
     return <div>
-      {/* {this.tableNum(this.sampleOrders)}
-      {this.itemNum(this.sampleOrders)} */}
       {this.renderTable(this.sampleOrders)}</div>;
   }
 }
