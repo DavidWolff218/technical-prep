@@ -1,64 +1,64 @@
 import React, { Component } from "react";
 
 export class App extends Component {
-  sampleOrders = [
-    {
-      tableNumber: 1,
-      items: [
-        {
-          itemName: "coffee",
-          quantity: 2,
-        },
-        {
-          itemName: "donuts",
-          quantity: 6,
-        },
-      ],
-    },
-    {
-      tableNumber: 2,
-      items: [
-        {
-          itemName: "bagel",
-          quantity: 1,
-        },
-      ],
-    },
-  ];
+  state = {
+    sampleOrders: [
+      {
+        tableNumber: 1,
+        items: [
+          {
+            itemName: "coffee",
+            quantity: 2,
+          },
+          {
+            itemName: "donuts",
+            quantity: 6,
+          },
+        ],
+      },
+      {
+        tableNumber: 2,
+        items: [
+          {
+            itemName: "bagel",
+            quantity: 1,
+          },
+        ],
+      },
+    ],
+  };
 
   tableNum = (tables) => {
-     return tables.tableNumber
-  }
+    return tables.tableNumber;
+  };
 
   itemNum = (table) => {
-    let itemCount = 0
-    table.items.map(items => {
-      return itemCount += items.quantity  
-    })
-    return itemCount
-  }
+    let itemCount = 0;
+    table.items.map((items) => {
+      return (itemCount += items.quantity);
+    });
+    return itemCount;
+  };
 
   handleClick = () => {
-    console.log("hello")
-  }
-  
-  renderItems = () => {
-    
-  }
+    console.log(this.state);
+  };
+
+  renderItems = () => {};
 
   renderTable = (tables) => {
-    return tables.map(table => {
-    return (
-      <>
-        <div onClick={this.handleClick}>Table {this.tableNum(table)} - {this.itemNum(table)} items</div>
-      </>
-    );
-  })
-}
+      return tables.map(table => {
+      return (
+        <>
+          <div onClick={this.handleClick}>Table {this.tableNum(table)} - {this.itemNum(table)} items</div>
+        </>
+      );
+    })
+  };
 
   render() {
-    return <div>
-      {this.renderTable(this.sampleOrders)}</div>;
+    console.log(this.state.sampleOrders);
+    return <div>{this.renderTable(this.state.sampleOrders)}</div>;
   }
 }
 export default App;
