@@ -34,6 +34,13 @@ export class App extends Component {
     return tables.tableNumber;
   };
 
+  itemNum = (table) => {
+    let itemCount = 0;
+    table.items.map((items) => {
+      return (itemCount += items.quantity);
+    });
+    return itemCount;
+  };
 
 
   handleClick = (myTable) => {
@@ -42,10 +49,13 @@ export class App extends Component {
         table => table.tableNumber === myTable.tableNumber ? {...table, showItems : !table.showItems} : {...table}
         )
       })
+      // console.log("function", this.state.sampleOrders);
+      // async issue with this console log
   };
 
 
   renderItems = (table) => {
+
     return table.items.map(item => {
       console.log("ITEM", item)
     return <div>{item.itemName} - {item.quantity}</div> })
