@@ -15,6 +15,7 @@ export class App extends Component {
             quantity: 6,
           },
         ],
+        showItems: false,
       },
       {
         tableNumber: 2,
@@ -24,6 +25,7 @@ export class App extends Component {
             quantity: 1,
           },
         ],
+        showItems: false,
       },
     ],
   };
@@ -32,32 +34,41 @@ export class App extends Component {
     return tables.tableNumber;
   };
 
-  itemNum = (table) => {
-    let itemCount = 0;
-    table.items.map((items) => {
-      return (itemCount += items.quantity);
-    });
-    return itemCount;
+
+
+  handleClick = (myTable) => {
+    this.setState({
+      sampleOrders: this.state.sampleOrders.map(
+        table => table.tableNumber === myTable.tableNumber ? {...table, showItems : !table.showItems} : {...table}
+        )
+      })
   };
 
-  handleClick = () => {
-    console.log(this.state);
-  };
 
-  renderItems = () => {};
+  renderItems = (table) => {
+    return table.items.map(item => {
+      console.log("ITEM", item)
+    return <div>{item.itemName} - {item.quantity}</div> })
+  };
 
   renderTable = (tables) => {
-      return tables.map(table => {
+    return tables.map((table) => {
       return (
         <>
-          <div onClick={this.handleClick}>Table {this.tableNum(table)} - {this.itemNum(table)} items</div>
+          <div onClick={() => this.handleClick(table)}>
+            Table {this.tableNum(table)} - {this.itemNum(table)} items
+          </div>
+          <div>
+            { table.showItems === true ? this.renderItems(table) : null} 
+            {/* why no anonymlus function here */}
+          </div>
         </>
       );
-    })
+    });
   };
 
   render() {
-    console.log(this.state.sampleOrders);
+    // console.log("render", this.state.sampleOrders);
     return <div>{this.renderTable(this.state.sampleOrders)}</div>;
   }
 }
